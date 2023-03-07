@@ -15,11 +15,9 @@ function Expense() {
         axios
           .post('http://localhost:8082/api/v1/expenses', expense)
           .then((response) => {
-            axios
-              .get('http://localhost:8082/api/v1/expenses/1')
-              .then((response) => {
-                getExpenses();
-              });
+            setExpenses((prevExpenses) => [...prevExpenses, response.data]);
+          }).catch((error) => {
+            console.log(error);
           });
       });
   };
@@ -29,7 +27,7 @@ function Expense() {
       setExpenses(response.data);
     });
   };
-
+  
   useEffect(() => {
     getExpenses();
     axios
@@ -45,7 +43,7 @@ function Expense() {
         paymentMethods={paymentMethods}
         onCreateExpense={handleExpense}
       />
-      <ExpenseList expenses={expenses} />
+      <ExpenseList expenses={expenses} setExpenses={setExpenses} />
     </>
   );
 }

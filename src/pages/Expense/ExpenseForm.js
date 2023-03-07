@@ -36,7 +36,7 @@ function ExpenseForm({ paymentMethods, onCreateExpense }) {
     <>
       <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
-          <FormControl id='date' isRequired isInvalid={!!error}>
+          <FormControl id='date' isRequired isInvalid={error}>
             <FormLabel>Date</FormLabel>
             <Input
               type='date'
@@ -45,7 +45,7 @@ function ExpenseForm({ paymentMethods, onCreateExpense }) {
             />
             <FormErrorMessage>{error}</FormErrorMessage>
           </FormControl>
-          <FormControl id='amount' isRequired isInvalid={!!error}>
+          <FormControl id='amount' isRequired isInvalid={error}>
             <FormLabel>Amount</FormLabel>
             <Input
               type='number'
@@ -54,7 +54,7 @@ function ExpenseForm({ paymentMethods, onCreateExpense }) {
             />
             <FormErrorMessage>{error}</FormErrorMessage>
           </FormControl>
-          <FormControl id='paymentMethod' isRequired isInvalid={!!error}>
+          <FormControl id='paymentMethod' isRequired isInvalid={error}>
             <FormLabel>Payment Method</FormLabel>
             <Select
               value={paymentMethod || paymentMethods[0]?.name}
