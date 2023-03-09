@@ -6,15 +6,11 @@ function Income() {
   const [incomes, setIncomes] = useState([]);
 
   const handleIncome = (income) => {
+    income.userId = 1;
     axios
-      .get('http://localhost:8082/api/v1/users/john.doe@example.com')
-      .then((res) => {
-        income.user = res.data;
-        axios
-          .post('http://localhost:8082/api/v1/incomes', income)
-          .then((response) => {
-            getIncomes();
-          });
+      .post('http://localhost:8082/api/v1/incomes', income)
+      .then((response) => {
+        getIncomes();
       });
   };
 

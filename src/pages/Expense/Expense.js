@@ -8,17 +8,14 @@ function Expense() {
 
   const handleExpense = (expense) => {
     //we'll work with the user with id=1, because we don't have yet an auth mechanism
+    expense.userId = 1;
     axios
-      .get('http://localhost:8082/api/v1/users/john.doe@example.com')
-      .then((res) => {
-        expense.user = res.data;
-        axios
-          .post('http://localhost:8082/api/v1/expenses', expense)
-          .then((response) => {
-            setExpenses((prevExpenses) => [...prevExpenses, response.data]);
-          }).catch((error) => {
-            console.log(error);
-          });
+      .post('http://localhost:8082/api/v1/expenses', expense)
+      .then((response) => {
+        setExpenses((prevExpenses) => [...prevExpenses, response.data]);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -27,7 +24,7 @@ function Expense() {
       setExpenses(response.data);
     });
   };
-  
+
   useEffect(() => {
     getExpenses();
     axios

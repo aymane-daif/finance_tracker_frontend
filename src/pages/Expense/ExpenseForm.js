@@ -21,10 +21,11 @@ function ExpenseForm({ paymentMethods, onCreateExpense }) {
       setError('All fields are required');
       return;
     }
-    let expense = { date, amount };
-    expense.paymentMethod = paymentMethods.find(
-      (p) => p.name === (paymentMethod || paymentMethods[0].name)
-    );
+    let expense = {
+      date,
+      amount,
+      paymentMethodName: paymentMethod || paymentMethods[0]?.name,
+    };
 
     onCreateExpense(expense);
 
