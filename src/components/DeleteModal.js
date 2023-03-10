@@ -17,11 +17,11 @@ function DeleteModal({ deleteId, setData }) {
 
   const deleteExpense = () => {
     axios
-      .delete(`http://localhost:8082/api/v1/expenses/${deleteId}`)
+      .delete(`${process.env.REACT_APP_URL_DEP}/api/v1/expenses/${deleteId}`)
       .then((response) => {
         console.log(response);
         axios
-          .get("http://localhost:8082/api/v1/expenses/1")
+          .get(`${process.env.REACT_APP_URL_DEP}/api/v1/expenses/1`)
           .then((response) => {
             setData(response.data);
           })

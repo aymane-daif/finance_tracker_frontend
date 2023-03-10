@@ -35,7 +35,7 @@ function ExpenseList({ expenses, setExpenses }) {
     };
     console.log(newExpense);
     axios
-      .put(`${process.env.URL_DEP}/api/v1/expenses/${expense.id}`, newExpense)
+      .put(`${process.env.REACT_APP_URL_DEP}/api/v1/expenses/${expense.id}`, newExpense)
       .then((response) => {
         console.log(response.data);
       })
