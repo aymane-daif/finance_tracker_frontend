@@ -23,7 +23,7 @@ function Expense() {
     console.log("***************************");
     console.log(process.env.URL_DEP);
     axios
-      .get(`http://financetrackerbackend-production.up.railway.app/api/v1/expenses/1`)
+      .get(`https://financetrackerbackend-production.up.railway.app/api/v1/expenses/1`)
       .then((response) => {
         setExpenses(response.data);
       })
