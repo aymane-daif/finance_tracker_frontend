@@ -10,7 +10,7 @@ function Expense() {
     //we'll work with the user with id=1, because we don't have yet an auth mechanism
     expense.userId = 1;
     axios
-      .post("http://localhost:8082/api/v1/expenses", expense)
+      .post(`${process.env.REACT_APP_URL_DEP}/api/v1/expenses`, expense)
       .then((response) => {
         setExpenses((prevExpenses) => [...prevExpenses, response.data]);
       })
@@ -20,10 +20,8 @@ function Expense() {
   };
 
   const getExpenses = () => {
-    console.log("***************************");
-    console.log(process.env.URL_DEP);
     axios
-      .get(`https://financetrackerbackend-production.up.railway.app/api/v1/expenses/1`)
+      .get(`${process.env.REACT_APP_URL_DEP}/api/v1/expenses/1`)
       .then((response) => {
         setExpenses(response.data);
       })
@@ -35,7 +33,7 @@ function Expense() {
   useEffect(() => {
     getExpenses();
     axios
-      .get("http://localhost:8082/api/v1/payment-methods")
+      .get(`${process.env.REACT_APP_URL_DEP}/api/v1/payment-methods`)
       .then((response) => {
         setPaymentMethods(response.data);
       })

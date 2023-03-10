@@ -8,7 +8,7 @@ function Income() {
   const handleIncome = (income) => {
     income.userId = 1;
     axios
-      .post("http://localhost:8082/api/v1/incomes", income)
+      .post(`${process.env.REACT_APP_URL_DEP}/api/v1/incomes`, income)
       .then((response) => {
         setIncomes((prevIncoms) => [...prevIncoms, response.data]);
       })
@@ -19,7 +19,7 @@ function Income() {
 
   const getIncomes = () => {
     axios
-      .get("http://localhost:8082/api/v1/incomes/1")
+      .get(`${process.env.REACT_APP_URL_DEP}/api/v1/incomes/1`)
       .then((response) => {
         setIncomes(response.data);
       })
