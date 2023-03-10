@@ -24,11 +24,16 @@ function DeleteModal({ deleteId, setData }) {
           .get("http://localhost:8082/api/v1/expenses/1")
           .then((response) => {
             setData(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
           });
 
         onClose();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    console.log(deleteId);
   };
   return (
     <>

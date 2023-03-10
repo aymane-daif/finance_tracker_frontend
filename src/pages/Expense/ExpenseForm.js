@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   VStack,
   Select,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 function ExpenseForm({ paymentMethods, onCreateExpense }) {
-  const [date, setDate] = useState('');
-  const [amount, setAmount] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [error, setError] = useState(null);
+  const [date, setDate] = useState("");
+  const [amount, setAmount] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!date || !amount) {
-      setError('All fields are required');
-      return;
-    }
+
     let expense = {
       date,
       amount,
@@ -29,46 +24,44 @@ function ExpenseForm({ paymentMethods, onCreateExpense }) {
 
     onCreateExpense(expense);
 
-    setDate('');
-    setAmount('');
+    setDate("");
+    setAmount("");
   }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
-          <FormControl id='date' isRequired isInvalid={error}>
+          <FormControl id="date" isRequired>
             <FormLabel>Date</FormLabel>
             <Input
-              type='date'
+              type="date"
               value={date}
               onChange={(event) => setDate(event.target.value)}
             />
-            <FormErrorMessage>{error}</FormErrorMessage>
           </FormControl>
-          <FormControl id='amount' isRequired isInvalid={error}>
+          <FormControl id="amount" isRequired>
             <FormLabel>Amount</FormLabel>
             <Input
-              type='number'
+              type="number"
               value={amount}
               onChange={(event) => setAmount(event.target.value)}
             />
-            <FormErrorMessage>{error}</FormErrorMessage>
           </FormControl>
-          <FormControl id='paymentMethod' isRequired isInvalid={error}>
+          <FormControl id="paymentMethod" isRequired>
             <FormLabel>Payment Method</FormLabel>
             <Select
               value={paymentMethod || paymentMethods[0]?.name}
-              onChange={(e) => setPaymentMethod(e.target.value)}>
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            >
               {paymentMethods.map((el) => (
                 <option value={el.name} key={el.id}>
                   {el.name}
                 </option>
               ))}
             </Select>
-            <FormErrorMessage>{error}</FormErrorMessage>
           </FormControl>
-          <Button type='submit'>Create</Button>
+          <Button type="submit">Create</Button>
         </VStack>
       </form>
     </>
