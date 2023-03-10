@@ -20,8 +20,10 @@ function Expense() {
   };
 
   const getExpenses = () => {
+    console.log("***************************");
+    console.log(process.env.URL_DEP);
     axios
-      .get("http://localhost:8082/api/v1/expenses/1")
+      .get(`http://financetrackerbackend-production.up.railway.app/api/v1/expenses/1`)
       .then((response) => {
         setExpenses(response.data);
       })
